@@ -57,4 +57,14 @@ public class TranslateTests {
         t.AddTranslation("ruim", "bad");
         assertEquals("war is bad", t.translatePhrase("guerra é ruim")); 
     }
+
+    @Test
+    public void  translatePhraseWithTwoTranslationsSameWorld(){
+     
+        t.AddTranslation("paz", "peace");
+        t.AddTranslation("é", "is");
+        t.AddTranslation("bom", "good");
+        t.AddTranslation("bom", "nice");
+        assertEquals("peace is good", t.translatePhrase("paz é bom")); 
+    }
 }

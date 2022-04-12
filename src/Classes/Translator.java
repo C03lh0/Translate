@@ -16,18 +16,26 @@ public class Translator {
         this.translations.put(world, translation);
     }
 
-    public Object translate(String string) {
+    public String translate(String string) {
         return translations.get(string);
     }
 
-    public Object translatePhrase(String phrase) {
+    public String translatePhrase(String phrase) {
         String [] worlds = phrase.split(" ");
         String phraseTranslate = "";
         for (String world : worlds) {
-            phraseTranslate += " "+translate(world);
+            String translatedWord = firstTranslation(world);
+            phraseTranslate += " "+ translatedWord;
         }
         //Corta os espaços nas pontas das strings
         return phraseTranslate.trim();
+    }
+
+    private String firstTranslation(String world) {
+        String translatedWord = translate(world);
+        if(translatedWord.contains(","))
+            translatedWord = translatedWord.substring(0,translatedWord.indexOf(","));
+        return translatedWord;
     }
 
 }
